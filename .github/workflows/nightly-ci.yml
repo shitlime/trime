@@ -65,7 +65,7 @@ jobs:
           ignorePreReleases: false
           configurationJson: |
             {
-              "template": "Change log from #{{FROM_TAG}} to #{{TO_TAG}}: #{{RELEASE_DIFF}}\n#{{UNCATEGORIZED}}",
+              "template": "Change log from #{{FROM_TAG}} to nightly: #{{RELEASE_DIFF}}\n#{{UNCATEGORIZED}}",
               "pr_template": "- [#{{MERGE_SHA}}] - #{{TITLE}}"
             }
         env:
