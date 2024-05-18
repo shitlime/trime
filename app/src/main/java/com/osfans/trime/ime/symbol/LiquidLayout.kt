@@ -6,7 +6,6 @@ package com.osfans.trime.ime.symbol
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.GradientDrawable
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.setPadding
 import com.osfans.trime.data.theme.ColorManager
@@ -45,6 +44,14 @@ import splitties.views.padding
 @SuppressLint("ViewConstructor")
 class LiquidLayout(context: Context, service: TrimeInputMethodService, theme: Theme) :
     ConstraintLayout(context) {
+    private val mBackground =
+        ColorManager.getDrawable(
+            key = "key_back_color",
+            border = theme.generalStyle.keyBorder,
+            borderColorKey = "key_border_color",
+            roundCorner = theme.generalStyle.roundCorner,
+        )
+
     // TODO: 继承一个键盘视图嵌入到这里，而不是自定义一个视图
     private val fixedKeyBar =
         constraintLayout {
@@ -65,13 +72,7 @@ class LiquidLayout(context: Context, service: TrimeInputMethodService, theme: Th
                             }
                         val root =
                             frameLayout {
-                                background =
-                                    GradientDrawable().apply {
-                                        cornerRadius = theme.generalStyle.roundCorner.toFloat()
-                                        ColorManager.getColor("key_back_color")?.let { bg ->
-                                            setColor(bg)
-                                        }
-                                    }
+                                background = mBackground
                                 add(
                                     text,
                                     lParams(matchParent, wrapContent) {
